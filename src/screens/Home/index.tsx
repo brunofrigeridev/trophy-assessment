@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, StyleSheet, Text } from 'react-native'
 import { RootState, useAppDispatch } from '../../store';
 import { fetchJsonData } from '../../store/asyncThunk';
 import { jsonBaseUrl } from '../../services';
@@ -36,7 +36,7 @@ const Home: React.FC<HomeProps> = ({}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList numColumns={3} contentContainerStyle={styles.listConainer} data={data as Game[]} renderItem={({ item }) => <GameItem game={item} />} keyExtractor={item => item?.id?.toString()} />
+      <FlatList numColumns={3} contentContainerStyle={styles.listContainer} data={data as Game[]} renderItem={({ item, index }) => <GameItem game={item} />} keyExtractor={item => item?.id?.toString()} />
     </SafeAreaView>
   )
 }
@@ -44,14 +44,15 @@ const Home: React.FC<HomeProps> = ({}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
   },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  listConainer: {
-    gap: 10
+  listContainer: {
+    gap: 10,
   }
 })
  
